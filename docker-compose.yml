@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  pdf2png:
+    build:
+      context: .
+      target: production
+    image: francajosejunior/node-ghostscript
+    container_name: node-ghostscript
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 3232:3232
