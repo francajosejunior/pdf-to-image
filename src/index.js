@@ -19,9 +19,7 @@ app.get("/", (req, res) => {
 router.post("/", (req, res) => {
   convert(req.body.pdf)
     .then(image => {
-      res.json({
-        image,
-      });
+      res.json(image);
     })
     .catch(error => {
       res.send({

@@ -6,6 +6,8 @@ module.exports.convert = pdf => {
     density: 100,
     //saveFilename: "untitled",
     format: "png",
+    width: 2480,
+    height: 3508,
   };
 
   return fromBase64(safeInput(pdf), options)
