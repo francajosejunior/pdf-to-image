@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  pdf2png:
+    environment:
+      NODE_ENV: "production"
+      PORT: 3232
+    command: node src/index.js

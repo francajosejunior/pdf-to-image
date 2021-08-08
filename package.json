@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node src/index.js",
     "nodemon": "nodemon src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "docker:prd": "docker-compose -f docker-compose.yml -f prd.yml up"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

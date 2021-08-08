@@ -4,10 +4,14 @@ services:
   pdf2png:
     build:
       context: .
-      target: dev
+      # target: dev
     image: francajosejunior/node-ghostscript
     container_name: node-ghostscript
     volumes:
       - ./:/usr/src/app
     ports:
       - 3232:3232
+    environment:
+      NODE_ENV: "development"
+      PORT: 3232
+    command: nodemon src/index.js
