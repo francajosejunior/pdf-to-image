@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const { convert } = require("./pdf2png");
 const bodyParser = require("body-parser");
 const router = express.Router();
+const port = process.env.PORT || 3232;
 
 const app = express();
 app.use(cors());
@@ -16,19 +17,28 @@ app.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  console.log("POST");
   convert(req.body.pdf)
-    .then(image =>
+    .then(image => {
       res.json({
         image,
-      })
-    )
+      });
+    })
     .catch(error => {
       res.send({
         status: 500,
         error: error.toString(),
       });
+    })
+    .finally(() => {
+      console.log("API execulted " + new Date());
     });
 });
 app.use("/pdf2png", router);
 
-app.listen(process.env.PORT || 3232, _ => console.log("App running 🚀"));
+app.listen(port, _ =>
+  console.log(
+    "App running in " + process.env.NODE_ENV,
+    `Listen ${port} port 🚀`
+  )
+);
