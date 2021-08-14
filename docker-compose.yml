@@ -5,13 +5,23 @@ services:
     build:
       context: .
       # target: dev
-    image: francajosejunior/node-ghostscript
-    container_name: node-ghostscript
+    image: francajosejunior/pdf2png
+    # container_name: pdf2png
     volumes:
       - ./:/usr/src/app
-    ports:
-      - 3232:3232
+    expose:
+      - 80
     environment:
-      NODE_ENV: "development"
-      PORT: 3232
-    command: nodemon src/index.js
+      NODE_ENV: "production"
+      PORT: 80
+    command: node src/index.js
+
+  nginx:
+    image: nginx:1.17.6-alpine
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    container_name: nginx
+    ports:
+      - 3232:80
+    depends_on:
+      - pdf2png

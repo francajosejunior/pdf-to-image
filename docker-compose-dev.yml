@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx:1.17.6-alpine
+    container_name: nginx
+    ports: 3232:80
+  pdf2png:
+    build:
+      context: .
+      # target: dev
+    image: francajosejunior/node-ghostscript
+    container_name: node-ghostscript
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 80
+    environment:
+      NODE_ENV: "development"
+      PORT: 3232
+    command: nodemon src/index.js
