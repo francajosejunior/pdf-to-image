@@ -3,6 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const { convert } = require("./pdf2png");
 const bodyParser = require("body-parser");
+const { logErrorsExpress: logErrors } = require("./logErrors");
 const router = express.Router();
 const port = process.env.PORT || 3232;
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb" }));
+app.use(logErrors);
 
 app.get("/", (req, res) => {
   const msg = "🖥 Applicatin to convert pdf  to png";

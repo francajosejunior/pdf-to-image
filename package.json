@@ -9,7 +9,7 @@
     "start": "node src/index.js",
     "nodemon": "nodemon src/index.js",
     "test": "jest",
-    "docker:prd": "docker-compose -f docker-compose.yml -f prd.yml up"
+    "docker": "docker-compose up"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -17,6 +17,8 @@
     "express": "^4.17.1",
     "global": "^4.4.0",
     "helmet": "^4.6.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "pdf2pic": "^2.1.4"
   },
   "devDependencies": {
